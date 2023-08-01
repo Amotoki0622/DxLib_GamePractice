@@ -145,7 +145,7 @@
     <ClInclude Include="FreamControl.h" />
     <ClInclude Include="GameClearScene.h" />
     <ClInclude Include="GameOverScene.h" />
-    <ClInclude Include="GamwMainScene.h" />
+    <ClInclude Include="GameMainScene.h" />
     <ClInclude Include="InputControl.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Stage.h" />

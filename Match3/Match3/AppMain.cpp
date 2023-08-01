@@ -65,7 +65,7 @@ int WINAPI WinMain(_In_ HINSTANCE hinstance, _In_opt_ HINSTANCE hPrevInstance, _
 	}
 
 	//•`‰ææ‰æ–Ê‚ğ— ‚É‚·‚é
-	SetDrawScreen(DX_SCREEN_BACK) :
+	SetDrawScreen(DX_SCREEN_BACK):
 
 		//•¶šƒTƒCƒY‚ğİ’è
 		SetFontsize(FONT_SIZE);
