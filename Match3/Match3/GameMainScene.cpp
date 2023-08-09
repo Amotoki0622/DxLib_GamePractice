@@ -1,4 +1,4 @@
-#include "GamwMainScene.h"
+#include "GameMainScene.h"
 #include "DxLib.h"
 #include "Stage.h"
 #include "SceneManager.h"
@@ -50,7 +50,7 @@ int GameMainScene_Initialize(void)
 
 
 	//画像読込み
-	LoadDivGraph("image/number.png", NUMBER_IMAGE_MAX, NUMBER_IMAGE, 1, 60, 120, NumberImage);
+	LoadDivGraph("image/number.png", NUMBER_IMAGE_MAX, NUMBER_IMAGE_MAX, 1, 60, 120, NumberImage);
 
 	//ステージ機能初期化
 	ret = StageInitialize();
@@ -122,7 +122,7 @@ void GameMainScene_Update(void)
 	//制限時間がなくなったら、ゲームオーバーに遷移する
 	if (GameTime < 0)
 	{
-		Change_Scene(F_GAME_OVER);
+		Change_Scene(E_GAME_OVER);
 	}
 	//ミッションを達成したあら、ゲームクリアに遷移する
 
@@ -141,13 +141,13 @@ void GameMainScore_Draw(void)
 {
 	int PosX = 600;
 	int tmp_level = GameLevel;
-	int tmp_scre = Get_StageScore();
+	int tmp_score = Get_StageScore();
 
 	//ステージを描画
 	StageDraw();
 
 	//フェードアウト状態か？
-	if (Get_StageSteta() == 1)
+	if (Get_StageState() == 1)
 	{
 		FadeOutBlock();			//フェードアウトする。
 	}

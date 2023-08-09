@@ -60,7 +60,7 @@ int GameClearScene_Initialize(void)
 *戻り値 ： なし
 **********************************************************/
 
-int GameClearScene_Update(void)
+void GameClearScene_Update(void)
 {
 //ゲームクリア効果音再生チェック
 	if (CheckSoundMem(GameClearSE) == 0)
