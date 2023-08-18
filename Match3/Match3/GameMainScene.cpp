@@ -7,7 +7,7 @@
 *マクロ定義
 ***********************************************************/
 
-#define TIMELIMIT					(3600 * 3)	//制限時間
+#define TIMELIMIT					(6920 * 2)	//制限時間
 #define NUMBER_IMAGE_MAX (10)	//数字画像数
 
 
@@ -50,7 +50,7 @@ int GameMainScene_Initialize(void)
 
 
 	//画像読込み
-	LoadDivGraph("image/number.png", NUMBER_IMAGE_MAX, NUMBER_IMAGE_MAX, 1, 60, 120, NumberImage);
+	LoadDivGraph("images/number.png", NUMBER_IMAGE_MAX, NUMBER_IMAGE_MAX, 1, 60, 120, NumberImage);
 
 	//ステージ機能初期化
 	ret = StageInitialize();
@@ -70,14 +70,14 @@ int GameMainScene_Initialize(void)
 if (GameCount == 0)
 {
 	GameScore = 0;		//ゲームスコアの更新
-	GameLevel = 1;		//ゲームレベルの初期化
+	GameLevel = 1;		//ゲームレベルの初期化			＊ここの数字を0にするとレベル1になる
 	Set_StageMission(3);//ミッションを初期化
 	GameCount++;		//次回の設定
 }
 else
 {
-	GameLevel++;		//ゲームレベルの更新
-	Set_StageMission(3);//ミッションを増やす
+	/*GameLevel++;		//ゲームレベルの更新			＊ここを消すとレベルが変わらない
+	Set_StageMission(3);//ミッションを増やす*/
 }
 GameTime = TIMELIMIT;	//制限時間の初期化
 
@@ -110,7 +110,7 @@ void GameMainScene_Update(void)
 		CheckClear();						//クリアチェック
 		break;
 
-	default :
+	default:
 		break;
 
 
@@ -129,6 +129,8 @@ void GameMainScene_Update(void)
 	if (Get_StageClearFlag())
 	{
 		Change_Scene(E_GAME_CLEAR);
+		GameLevel++;		//ゲームレベルの更新			＊ここを消すとレベルが変わらない
+		Set_StageMission(3);//ミッションを増やす
 	}
 }
 
@@ -137,7 +139,7 @@ void GameMainScene_Update(void)
 *引数：　なし
 戻り値：　なし
 ***********************************************************/
-void GameMainScore_Draw(void)
+void GameMainScene_Draw(void)
 {
 	int PosX = 600;
 	int tmp_level = GameLevel;
@@ -166,5 +168,5 @@ void GameMainScore_Draw(void)
 		} while (tmp_score > 0);
 
 		//制限時間の描画
-		DrawBox(491, 469, 509, 49 - GameTime / 60 * 2, 0x0033ff, TRUE);
+		DrawBox(491, 469, 509, 469 - GameTime / 60 * 2, 0x0033ff, TRUE);
 }

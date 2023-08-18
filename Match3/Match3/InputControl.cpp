@@ -41,7 +41,7 @@ void Input_Initialize(void)
 
 void Input_Update(void)
 {
-	//マウスの入力情報
+	//マウスの入力情報の取得
 	old_button = now_button;
 	now_button = GetMouseInput();
 
@@ -72,7 +72,8 @@ int Input_Escape(void)
 
 
 	return ret;
-}/**********************************************************
+}
+/**********************************************************
 *入力制御機能：　入力情報取得処理(離した瞬間)
 *引数：　指定するマウスのボタン
 *戻り値：　TRUE(入力された)、 FALSE(未入力)
@@ -102,11 +103,54 @@ int GetNowKey(int key)
 {
 	int ret = FALSE;
 
-	if ((key & now_button) != FALSE)
+	if((key & now_button) != FALSE)
 	{
 		ret = TRUE;
 	}
 
 
 	return ret;
+}
+/**********************************************************
+*入力制御機能：　入力情報取得処理（押した瞬間）
+*引数：　指定するマウスのボタン
+*戻り値：　TRUE(入力された)、FALSE(未入力)
+***********************************************************/
+
+int GetKeyFlg(int key)
+{
+	int ret = FALSE;
+	int keyflg = now_button & ~old_button;
+
+
+	if((key & keyflg) != FALSE)
+	{
+		ret = TRUE;
+	}
+
+	return ret;
+}
+
+
+/**********************************************************
+*入力制御機能マウス座標取得処理
+*引数：　なし
+*戻り値：　マウスカーソルのX座標取得
+***********************************************************/
+
+int GetMousePositionX(void)
+{
+	return mouse_position_x;
+}
+
+
+/**********************************************************
+*入力制御機能マウス座標取得処理
+*引数：　なし
+*戻り値：　マウスカーソルのY座標取得
+***********************************************************/
+
+int GetMousePositionY(void)
+{
+	return mouse_position_y;
 }

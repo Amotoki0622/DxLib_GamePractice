@@ -4,7 +4,7 @@
 ***********************************************************/
 
 #include "DxLib.h"
-#include "freamcontrol.h"
+#include "Freamcontrol.h"
 #include "InputControl.h"
 #include "SceneManager.h"
 
@@ -43,7 +43,7 @@ int WINAPI WinMain(_In_ HINSTANCE hinstance, _In_opt_ HINSTANCE hPrevInstance, _
 	ChangeWindowMode(TRUE);
 
 	//画面サイズの最大サイズ,カラービット数を設定
-	SetGraphMode(SCREEN_HIEGHT, SCREEN_WIDTH, SCREEN_COLORBIT);
+	SetGraphMode(SCREEN_WIDTH, SCREEN_HIEGHT, SCREEN_COLORBIT);
 
 
 	//Dxライブラリの初期化処理

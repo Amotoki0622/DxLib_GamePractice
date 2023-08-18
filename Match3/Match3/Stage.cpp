@@ -81,7 +81,7 @@ int MoveBlockSE;
 
 int combo_check(int x, int y);
 void combo_check_h(int y, int x, int* cnt, int* col);
-void comb_check_w(int y, int x, int* cnt, int* col);
+void combo_check_w(int y, int x, int* cnt, int* col);
 void save_block(void);
 void restore_block(void);
 
@@ -100,7 +100,7 @@ int StageInitialize(void)
 
 
 	//画像読込み
-	LoadDivGraph("image/block.png", BLOCK_IMAGE_MAX, BLOCK_IMAGE_MAX, 1, BLOCKSIZE, BLOCKSIZE, BlockImage);
+	LoadDivGraph("images/block.png", BLOCK_IMAGE_MAX, BLOCK_IMAGE_MAX, 1, BLOCKSIZE, BLOCKSIZE, BlockImage);
 	StageImage = LoadGraph("images/stage.png");
 
 
@@ -179,13 +179,13 @@ void StageDraw(void)
 	}
 
 	//ブロックを描画
-	for (int i = 0; i < ITEM_MAX; I++)
+	for (int i = 0; i < HEIGHT; i++)
 	{
 		for (int j = 0; j < WIDTH; j++)
 		{
 			if (Block[i][j].flg == TRUE && Block[i][j].image != NULL)
 			{
-				DrawGraph(Block[i][j].x, Block[i][j].y,Blockimage[Block[i][j].image], TRUE);
+				DrawGraph(Block[i][j].x, Block[i][j].y,BlockImage[Block[i][j].image], TRUE);
 
 			}
 		}
@@ -195,7 +195,7 @@ void StageDraw(void)
 	DrawGraph(Select[SELECT_CURSOR].x * BLOCKSIZE, Select[SELECT_CURSOR].y * BLOCKSIZE, BlockImage[9], TRUE);
 	if (ClickStatus != E_NONE)
 	{
-		DrawGraph(Select[NEXT_CURSOR].x * BLOCKSIZE, select[NEXT_CURSOR].y * BLOCKSIZE, BlockImage[9], TRUE);
+		DrawGraph(Select[NEXT_CURSOR].x * BLOCKSIZE, Select[NEXT_CURSOR].y * BLOCKSIZE, BlockImage[9], TRUE);
 	}
 
 	//ミッションを描画
@@ -207,8 +207,10 @@ void StageDraw(void)
 	for (int i = 0; i < ITEM_MAX; i++)
 	{
 		DrawRotaGraph(540, 245 + i * 30, 0.5f, 0, BlockImage[i + 1], TRUE, 0);
-		DrawFormatString(590, 211, GetColor(255, 255, 255), "%3d", Item[i]);
+		DrawFormatString(580, 235, GetColor(255, 255, 255), "%3d", Item[i]);
 	}
+	
+
 
 }
 
@@ -233,13 +235,13 @@ void CreateBlock(void)
 			{
 				if (j == 0 || j == WIDTH - 1 || i == WIDTH - 1 || i == 0)
 				{
-					Block[i][j].flg == FALSE;
-					Block[i][j].image == NULL;
+					Block[i][j].flg = FALSE;
+					Block[i][j].image = NULL;
 				}
 
 				else
 				{
-					Block[i][j].flg == TRUE;
+					Block[i][j].flg = TRUE;
 					Block[i][j].x = (j - 1) * BLOCKSIZE;
 					Block[i][j].y = (i - 1) * BLOCKSIZE;
 					Block[i][j].width = BLOCKSIZE;
@@ -261,9 +263,9 @@ void CreateBlock(void)
 		}*/
 
 		//ブロック連鎖チェック
-		for (i = 0; i < HEIGHT; i++)
+		for (i = 1; i < HEIGHT - 1; i++)
 		{
-			for (j = 1; j < WIDTH; j++)
+			for (j = 1; j < WIDTH - 1; j++)
 			{
 				Check += combo_check(i, j);
 			}
@@ -321,7 +323,7 @@ void SelectBlock(void)
 		PlaySoundMem(ClickSE, DX_PLAYTYPE_BACK);
 
 
-		if (ClickSE == E_NONE)
+		if (ClickStatus == E_NONE)
 		{
 			Select[NEXT_CURSOR].x = Select[SELECT_CURSOR].x;
 			Select[NEXT_CURSOR].y = Select[SELECT_CURSOR].y;
@@ -385,9 +387,9 @@ void FadeOutBlock(void)
 	}
 	//描画モードをアルファブレンドにする
 	SetDrawBlendMode(DX_BLENDGRAPHTYPE_ALPHA, BlendMode);
-	for (i = 0; i < HEIGHT - 1; i++)
+	for (i = 1; i < HEIGHT - 1; i++)
 	{
-		for (j = 0; j < WIDTH; j++)
+		for (j = 1; j < WIDTH - 1; j++)
 		{
 			if (Block[i][j].image == 0)
 			{
@@ -424,7 +426,7 @@ void MoveBlock(void)
 	PlaySoundMem(MoveBlockSE, DX_PLAYTYPE_BACK);
 
 	//↓へ移動する処理
-	for (i = 1; i < HEIGHT; i++)
+	for (i = 1; i < HEIGHT - 1; i++)
 	{
 		for (j = 1; j < WIDTH - 1; j++)
 		{
@@ -439,7 +441,7 @@ void MoveBlock(void)
 		}
 	}
 	//空のブロックを生成する処理
-	for (i = 0; i < HEIGHT; i++)
+	for (i = 1; i < HEIGHT - 1; i++)
 	{
 		for (j = 1; j < WIDTH - 1; j++)
 		{
@@ -467,7 +469,7 @@ void CheckBlock(void)
 
 
 	//ブロック連鎖チェック
-	for (i = 1; i < HEIGHT; i++)
+	for (i = 1; i < HEIGHT -1; i++)
 	{
 		for (j = 1; j < WIDTH - 1; j++)
 		{
@@ -479,6 +481,10 @@ void CheckBlock(void)
 	if (Result == 0)
 	{
 		//クリアチェック処理へ移行する
+		Stage_State = 4;
+	}
+	else
+	{
 		Stage_State = 1;
 	}
 }
@@ -496,7 +502,7 @@ void CheckClear(void)
 	int i;
 
 
-	for (i = 0; i < HEIGHT; i++)
+	for (i = 0; i < ITEM_MAX; i++)
 	{
 		if (Item[i] >= Stage_Mission)
 		{
@@ -542,7 +548,7 @@ int Get_StageClearFlag(void)
 
 int Get_StageScore(void)
 {
-	return Stage_score;
+	return Stage_Score;
 }
 
 
@@ -560,8 +566,8 @@ void Set_StageMission(int mission)
 
 /**********************************************************
 *ステージ制御機能：　連鎖チェック処理
-*引数1：　ブロックXマス
-*引数2：　ブロックYマス
+*引数1：　ブロックYマス
+*引数2：　ブロックXマス
 *戻り値：　連鎖有無（0:無し　1：有り）
 ***********************************************************/
 
@@ -581,12 +587,11 @@ int combo_check(int y, int x)
 	}
 
 	//横方向のチェック
-	//縦の方向性のチェック
 	int CountW = 0;
 	int ColorW = 0;
 	save_block();
 	combo_check_w(y, x, &CountW, &ColorW);
-	if (CountH < 3)
+	if (CountW < 3)
 	{
 		restore_block();			//3個未満なら戻す
 	}

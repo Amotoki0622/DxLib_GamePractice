@@ -52,7 +52,7 @@ int SceneManager_Initialize(GAME_MODE mode)
 
 
 	//ƒQ[ƒ€ƒƒCƒ“‰æ–Ê
-	Read_Error = GameMainScene__Initialize();
+	Read_Error = GameMainScene_Initialize();
 	if (Read_Error == D_ERROR)
 	{
 		return D_ERROR;
@@ -139,7 +139,7 @@ void SceneManager_Draw(void)
 		GameMainScene_Draw();
 		break;
 
-	case GAME_CLEAR:
+	case E_GAME_CLEAR:
 		GameClearScene_Draw();
 		break;
 
