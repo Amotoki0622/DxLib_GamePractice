@@ -36,7 +36,7 @@ int WINAPI WinMain(_In_ HINSTANCE hinstance, _In_opt_ HINSTANCE hPrevInstance, _
 	LPSTR lpCmdLine, _In_ int nShowCmd)
 {
 	//ウィンドウタイトル設定
-	SetMainWindowText("Match 3 Puzzle");
+	SetMainWindowText("Match 3 Puzzl");
 
 	//ウィンドウモードで起動
 
