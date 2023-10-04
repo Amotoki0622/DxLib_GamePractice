@@ -50,7 +50,46 @@ int WINAPI WinMain(_In_ HINSTANCE hinstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	if (DxLib_Init() == -1)
 	{
+		//エラー終了
 		return -1;
+	}
+
+	//フレーム制御機能初期化処理
+	FreamControl_Initialize();
+
+	//シーン管理機能初期化処理
+	SceneManager_Initialize(E_TITLE);
+
+	//入力制御機能初期化処理
+	InputControl_Initialize();
+
+	//描画先画面を裏に設定する
+	SetDrawScreen(DX_SCREEN_BACK);
+
+	//文字サイズを設定
+	SetFontSize(FONT_SIZE);
+
+	//ゲームループ
+	while (ProcessMessage() == 0 && GetExitButton() != TRUE && ErrorCheck() == D_NORMALITY)
+	{
+		//フレーム制御更新処理
+		FreamControl_Update();
+
+		//画面の初期化
+		ClearDrawScreen();
+
+		//入力制御機能更新処理
+		InputControl_Update();
+
+		//シーン管理機能更新処理
+		SceneManager_Update();
+
+		//シーン管理機能描画処理
+		SceneManager_Draw();
+
+		//裏画面の内容を表画面に反映
+		ScreenFlip();
+
 	}
 
 	//入力待機
@@ -60,5 +99,7 @@ int WINAPI WinMain(_In_ HINSTANCE hinstance, _In_opt_ HINSTANCE hPrevInstance, _
 	//Dxライブラリ使用の終了処理
 
 	DxLib_End();
+
+	//ソフトの終了
 	return 0;
 }
