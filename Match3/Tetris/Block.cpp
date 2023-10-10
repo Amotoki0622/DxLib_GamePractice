@@ -293,5 +293,75 @@ int Block_Initialize(void)
 	*引数 ： なし
 	*戻り値 ： なし
 	*******************************************************/
-	
+	void create_field(void)
+	{
+		int i, j;		//ループカウンタ
+
+		//フィールドの生成
+		for (i = 0; i < FIELD_HEIGHT; i++)
+		{
+			for (j = 0; j < FIELD_WIDTH; j++)
+			{
+				//フィールドの値の設定
+				if (j == 0 || j == FIELD_WIDTH - 1 || i == FIELD_HEIGHT - 1)
+				{
+					Field[i][j] = E_BLOCK_WALL;				//壁状態にする
+				}
+				else
+				{
+					Field[i][j] = E_BLOCK_EMPTY;		//空状態にする
+				}
+			}
+		}
+	}
+	/******************************************************
+	*ブロック機能 ： ブロック生成処理
+	*引数 ： なし
+	*戻り値 ： なし
+	*******************************************************/
+	void create_block(void)
+	{
+		int i, j;			//ループカウンタ
+		int block_type;		//次に出現させるブロック
+
+		//次に出現させるブロックの決定する
+		block_type = GetRand(BLOCK_TYPE_MAX - 1);
+
+		//新しいブロックをセット＆次のブロックを生成
+		for (i = 0; i < BLOCK_TROUT_SIZE; i++)
+		{
+			for (j = 0; j < BLOCK_TROUT_SIZE; j++)
+			{
+				DropBlock[i][j] = Next[i][j];
+				Next[i][j] = (BLOCK_STATE)C_BLOCK_TABLE[block_type][i][j];
+			}
+		}
+		//位置出現の設定
+		DropBlock_x = DROP_BLOCK_INIT_X;
+		DropBlock_y = DROP_BLOCK_INIT_Y;
+
+		//生成できなかった時、ゲームオーバーに遷移する
+		if (check_overlap(DropBlock_x, DropBlock_y) == FALSE)
+		{
+			Generate_Flg = FALSE;
+		}
+	}
+	/*********************************************************
+	*ブロック機能 ： ブロックの移動処理
+	*引数 ： なし
+	*戻り値 ： なし
+	**********************************************************/
+	void move_block(void)
+	{
+		//左入力時
+		if (GetButtonDown(XINPUT_BUTTON_DPAD_LEFT))
+		{
+			if (check_overlap(DropBlock_x - 1, DropBlock_y) == TRUE)
+			{
+				DropBlock_x--;
+			}
+		}
+		//右入力時
+		
+	}
 }
