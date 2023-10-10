@@ -246,7 +246,7 @@ int Block_Initialize(void)
 			{
 				if (Field[i][j] != E_BLOCK_WALL)
 				{
-					DrawGraph(j * BLOCK_SIZE, i * BLOCK_SIZE, BlockImage[Field[i][j], TRUE]);
+					DrawGraph(j * BLOCK_SIZE, i * BLOCK_SIZE, BlockImage[Field[i][j]], TRUE);
 				}
 			}
 		}
