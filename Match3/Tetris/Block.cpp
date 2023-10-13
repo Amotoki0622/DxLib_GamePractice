@@ -268,7 +268,7 @@ int Block_Initialize(void)
 		{
 			for (j = 0; j < BLOCK_TROUT_SIZE; j++)
 			{
-				DrawGraph((DropBlock_x + j) * BLOCK_SIZE, (DropBlock_y + i) * BLOCK_SIZE, BlockImage[DropBlock[i][j], TRUE]);
+				DrawGraph((DropBlock_x + j) * BLOCK_SIZE, (DropBlock_y + i) * BLOCK_SIZE, (DropBlock_y + i) * BLOCK_SIZE, BlockImage[DropBlock[i][j],TRUE]);
 			}
 		}
 	}
