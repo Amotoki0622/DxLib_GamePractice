@@ -109,7 +109,8 @@ int DropBlock_y;														//落ちるブロックのy座標
 
 int WaitTime;			//待機時間
 int Stock_Flg;			//ストックフラグ
-int DeleteLine;			//生成フラグ
+int Generate_Flg;		//生成フラグ
+int DeleteLine;			//消したラインの数
 int SoundEffect[3];		//SE
 
 
@@ -435,7 +436,7 @@ int Block_Initialize(void)
 	*引数 ： 回転させる向き(0: 時計回り 1: 反時計回り)
 	*戻り値 ： なし
 	*******************************************************/
-	void turn_block(int clockkwise)
+	void turn_block(int clockwise)
 	{
 		BLOCK_STATE temp[BLOCK_TROUT_SIZE][BLOCK_TROUT_SIZE] = { E_BLOCK_EMPTY };		//退避領域
 		int i, j;		//ループカウンタ
