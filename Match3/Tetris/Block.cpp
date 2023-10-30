@@ -122,7 +122,7 @@ void create_field(void);
 void create_block(void);
 void move_block(void);
 void change_block(void);
-void turn_block(void);
+void turn_block(int clockwise);
 int check_overlap(int x, int y);
 void lock_block(int x, int y);
 void check_line(void);
