@@ -154,6 +154,9 @@ int Block_Initialize(void)
 	ChangeVolumeSoundMem(130, SoundEffect[2]);
 
 	//フィールドの生成
+	create_field();
+
+	//ブロック生成
 	create_block();
 	create_block();
 
