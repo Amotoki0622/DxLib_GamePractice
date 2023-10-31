@@ -94,7 +94,7 @@ int WINAPI WinMain(_In_ HINSTANCE hinstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	//入力待機
 
-	WaitKey();
+	//WaitKey();
 
 	//Dxライブラリ使用の終了処理
 
