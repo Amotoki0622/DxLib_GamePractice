@@ -36,7 +36,7 @@
 
 int WINAPI WinMain(_In_ HINSTANCE hinstance, _In_opt_ HINSTANCE hPrevInstance, _In_
 	LPSTR lpCmdLine, _In_ int nShowCmd)
-{
+	{
 	//タイトル変更
 	SetMainWindowText("テトリス");
 
@@ -94,7 +94,7 @@ int WINAPI WinMain(_In_ HINSTANCE hinstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	//入力待機
 
-	//WaitKey();
+	WaitKey();
 
 	//Dxライブラリ使用の終了処理
 

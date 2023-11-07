@@ -17,8 +17,8 @@
 /**********************************************************
 *グローバル変数宣言
 ***********************************************************/
-int BlockGround_image;					//背景画像イメージ
-int BlockGround_sound;					//BGM
+int BackGround_image;					//背景画像イメージ
+int BackGround_sound;					//BGM
 int GameOver_sound;								//ゲームオーバーSE
 int Score;												//スコア
 
@@ -36,17 +36,17 @@ int GameMainScene_Initialize(void)
 {
 	int ret = 0;
 
-	ret = GameMainScene_Initialize();
-	BlockGround_image = LoadGraph("images/stage.png");
-	BlockGround_sound = LoadSoundMem("sounds/BGM017.ogg");
+	ret = Block_Initialize();
+	BackGround_image = LoadGraph("images/stage.png");
+	BackGround_sound = LoadSoundMem("sounds/BGM017.ogg");
 	GameOver_sound = LoadSoundMem("sounds/GameOver.mp3");
 
 	//エラーチェック
-	if (BlockGround_image == -1)
+	if (BackGround_image == -1)
 	{
 		ret = -1;
 	}
-	if (BlockGround_sound == -1)
+	if (BackGround_sound == -1)
 	{
 		ret = -1;
 	}
@@ -63,7 +63,7 @@ int GameMainScene_Initialize(void)
 void GameMainScene_Update(void)
 {
 	//BGMの再生
-	PlaySoundMem(BlockGround_sound, DX_PLAYTYPE_LOOP, FALSE);
+	PlaySoundMem(BackGround_sound, DX_PLAYTYPE_LOOP, FALSE);
 
 	//ブロック機能の更新
 	Block_Update();
@@ -75,7 +75,7 @@ void GameMainScene_Update(void)
 	{
 		PlaySoundMem(GameOver_sound, DX_PLAYTYPE_BACK, FALSE);
 		Change_Scene(E_RANKING);
-		StopSoundMem(BlockGround_sound);
+		StopSoundMem(BackGround_sound);
 	}
 }
 
@@ -87,7 +87,7 @@ void GameMainScene_Update(void)
 void GameMainScene_Draw(void)
 {
 	//背景の描画
-	DrawGraph(0, 0, BlockGround_image, TRUE);
+	DrawGraph(0, 0, BackGround_image, TRUE);
 
 	//ブロックの描画
 	Block_Draw();

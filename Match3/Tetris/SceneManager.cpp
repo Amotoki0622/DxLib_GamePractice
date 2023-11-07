@@ -44,7 +44,7 @@ void SceneManager_Initialize(GAME_MODE mode)
 		break;
 
 	case E_GAMEMAIN:
-		read_error = TitleScene_Initialize();				//ゲームメイン画面の初期化
+		read_error = GameMainScene_Initialize();				//ゲームメイン画面の初期化
 		break;
 
 	case E_RANKING:

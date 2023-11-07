@@ -33,7 +33,7 @@ int sounds[E_SOUND_MAX];
 /**********************************************************
 *タイトル宣言 ： 初期化処理
 *引数 ： なし
-*戻り値 ： なし
+*戻り値 ： エラー情報(-1 : 異常有 , -1以外 : 正常終了)
 ***********************************************************/
 int TitleScene_Initialize(void)
 {
@@ -47,6 +47,7 @@ int TitleScene_Initialize(void)
 
 	ChangeVolumeSoundMem(120, sounds[E_TITLE_SE_CURSOR]);
 	ChangeVolumeSoundMem(80, sounds[E_TITLE_SE_SELECT]);
+
 	for (int i = 0; i < E_SOUND_MAX; i++)
 	{
 		if (sounds[i] == -1)

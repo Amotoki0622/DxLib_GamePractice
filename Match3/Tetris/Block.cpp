@@ -144,9 +144,9 @@ int Block_Initialize(void)
 	ret = LoadDivGraph("images/block.png", E_BLOCK_IMAGE_MAX, 10, 1, BLOCK_SIZE, BLOCK_SIZE, BlockImage);
 
 	//SEの読み込み
-	SoundEffect[0] = LoadSoundMem("sound/SE3.mp3");
-	SoundEffect[1] = LoadSoundMem("sound/SE4.mp3");
-	SoundEffect[2] = LoadSoundMem("sound/SE5.wav");
+	SoundEffect[0] = LoadSoundMem("sounds/SE3.mp3");
+	SoundEffect[1] = LoadSoundMem("sounds/SE4.mp3");
+	SoundEffect[2] = LoadSoundMem("sounds/SE5.wav");
 
 	//音量の調整
 	ChangeVolumeSoundMem(150, SoundEffect[0]);
@@ -165,6 +165,9 @@ int Block_Initialize(void)
 
 	//ストックフラグの初期化
 	Stock_Flg = FALSE;
+
+	//生成フラグの初期化
+	Generate_Flg = TRUE;
 
 	//消したラインの数の初期化
 	DeleteLine = 0;
@@ -206,7 +209,7 @@ int Block_Initialize(void)
 		//ブロックの回転(反時計回り)
 		if ((GetButtonDown(XINPUT_BUTTON_A) == TRUE) || (GetButtonDown(XINPUT_BUTTON_Y) == TRUE))
 		{
-			turn_block(TURN_CROCKWICE);
+			turn_block(TURN_ANTICROCKWICE);
 		}
 
 		//ブロックの回転(時計回り)
@@ -216,7 +219,7 @@ int Block_Initialize(void)
 		}
 
 		//落下処理
-		WaitTime++;		//カウンタの処理
+		WaitTime++;		//カウンタの更新
 		if (WaitTime > DROP_SPEED)
 		{
 			if (check_overlap(DropBlock_x, DropBlock_y + 1) == TRUE)
