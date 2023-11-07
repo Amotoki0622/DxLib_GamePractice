@@ -275,7 +275,7 @@ int Block_Initialize(void)
 		{
 			for (j = 0; j < BLOCK_TROUT_SIZE; j++)
 			{
-				DrawGraph((DropBlock_x + j) * BLOCK_SIZE, (DropBlock_y + i) * BLOCK_SIZE, (DropBlock_y + i) * BLOCK_SIZE, BlockImage[DropBlock[i][j],TRUE]);
+				DrawGraph((DropBlock_x + j) * BLOCK_SIZE, (DropBlock_y + i) * BLOCK_SIZE, BlockImage[DropBlock[i][j]],TRUE);
 			}
 		}
 	}
@@ -371,9 +371,9 @@ int Block_Initialize(void)
 			}
 		}
 		//右入力時
-		if (GetButtonDown(XINPUT_BUTTON_DPAD_LEFT))
+		if (GetButtonDown(XINPUT_BUTTON_DPAD_RIGHT))
 		{
-			if (check_overlap(DropBlock_x - 1, DropBlock_y) == TRUE)
+			if (check_overlap(DropBlock_x + 1, DropBlock_y) == TRUE)
 			{
 				DropBlock_x++;
 			}
@@ -546,7 +546,7 @@ int Block_Initialize(void)
 		int i, j, k;			//ループカウンタ
 		for (i = 0; i < FIELD_HEIGHT - 1; i++)
 		{
-			for (j = 0; j < FIELD_WIDTH; j++)
+			for (j = 1; j < FIELD_WIDTH; j++)
 			{
 				//行の途中があいているか？
 				if (Field[i][j] == E_BLOCK_EMPTY)

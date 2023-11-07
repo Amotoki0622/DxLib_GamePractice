@@ -90,7 +90,7 @@ void GameMainScene_Draw(void)
 	DrawGraph(0, 0, BackGround_image, TRUE);
 
 	//ブロックの描画
-	Block_Draw();
+	Block_Draw(); 
 	SetFontSize(100);
 
 	//スコアを描画
