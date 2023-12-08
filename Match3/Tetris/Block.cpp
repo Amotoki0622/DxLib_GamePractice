@@ -20,7 +20,7 @@
 #define DROP_BLOCK_INIT_Y	(-1)				//落ちてくるブロックの初期Y座標
 #define DROP_SPEED					(60)				//落下時間
 #define TURN_CROCKWICE				(0)						//時計回りに回転させる
-#define TURN_ANTICROCKWICE	(1)							//時計回りに回転させる
+#define TURN_ANTICROCKWICE	(1)							//反時計回りに回転させる
 
 /**********************************************************
 *型定義
@@ -466,7 +466,7 @@ int Block_Initialize(void)
 				{
 					for (j = 0; j < BLOCK_TROUT_SIZE; j++)
 					{
-						temp[3 - 1][i] = DropBlock[i][j];
+						temp[3 - j][i] = DropBlock[i][j];
 					}
 				}
 			}
@@ -561,7 +561,7 @@ int Block_Initialize(void)
 				DeleteLine++;
 
 				//１段下げる
-				for (k = 1; k > 0; k--)
+				for (k = i; k > 0; k--)
 				{
 					for (j = 1; j < FIELD_WIDTH; j++)
 					{
