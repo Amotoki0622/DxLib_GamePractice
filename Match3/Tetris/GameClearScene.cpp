@@ -16,7 +16,7 @@
 
 int GameClearImage;
 int GameClearSE;
-int GameClearFlg;
+int GameClearFlag;
 
 /**********************************************************
 *プロトタイプ宣言
@@ -37,7 +37,7 @@ int GameClearScene_Initialize(void)
 	//音源の読込み
 	GameClearSE = LoadSoundMem("sounds/Clear.mp3");
 
-	GameClearFlg = 0;
+	GameClearFlag = 0;
 
 	//エラーチェック
 	if (GameClearImage == -1)
@@ -62,14 +62,14 @@ void GameClearScene_Update(void)
 	//ゲームクリア効果音再生チェック
 	if (CheckSoundMem(GameClearSE) == 0)
 	{
-		if (GameClearFlg == TRUE)
+		if (GameClearFlag == TRUE)
 		{
 			Change_Scene(E_GAMEMAIN);
 		}
 		else
 		{
 			PlaySoundMem(GameClearSE, DX_PLAYTYPE_BACK);
-			GameClearFlg = TRUE;
+			GameClearFlag = TRUE;
 		}
 	}
 }
