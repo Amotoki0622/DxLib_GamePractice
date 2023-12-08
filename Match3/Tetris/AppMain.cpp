@@ -103,5 +103,3 @@ int WINAPI WinMain(_In_ HINSTANCE hinstance, _In_opt_ HINSTANCE hPrevInstance, _
 	//ソフトの終了
 	return 0;
 }
-
-//aa
