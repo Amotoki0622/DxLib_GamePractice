@@ -1,6 +1,8 @@
 #include "SceneManager.h"
 #include "TitleScene.h"
 #include "GameMainScene.h"
+#include "GameClearScene.h"
+#include "GameOverScene.h"
 #include "RankingScene.h"
 #include "EndScene.h"
 #include "DxLib.h"
@@ -46,6 +48,13 @@ void SceneManager_Initialize(GAME_MODE mode)
 	case E_GAMEMAIN:
 		read_error = GameMainScene_Initialize();				//ÉQÅ[ÉÄÉÅÉCÉìâÊñ ÇÃèâä˙âª
 		break;
+
+	case E_GAME_CLEAR:
+		read_error = GameClearScene_Initialize();
+		break;
+
+	case E_GAME_OVER:
+		read_error = GameOverScene_Initialize();
 
 	case E_RANKING:
 		if (game_mode == E_GAMEMAIN)
@@ -93,6 +102,14 @@ void SceneManager_Update(void)
 		GameMainScene_Update();
 		break;
 
+	case E_GAME_CLEAR:
+		GameClearScene_Update();
+		break;
+
+	case E_GAME_OVER:
+		GameOverScene_Update();
+		break;
+
 	case E_RANKING:
 		RankingScene_Update();
 		break;
@@ -120,6 +137,14 @@ void SceneManager_Draw(void)
 
 	case E_GAMEMAIN:
 		GameMainScene_Draw();
+		break;
+
+	case E_GAME_CLEAR:
+		GameClearScene_Draw();
+		break;
+
+	case E_GAME_OVER:
+		GameOverScene_Draw();
 		break;
 
 	case E_END:
