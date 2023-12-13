@@ -213,7 +213,7 @@ void ranking_sort(void)
 	//データのソートを更新を行う
 	for (i = 0; i < RANKING_MAX; i++)
 	{
-		for (j = 0; j < RANKING_MAX; j++)
+		for (j = i + 1; j < RANKING_MAX; j++)
 		{
 			if (Ranking_Data[i].score < Ranking_Data[j].score)
 			{
