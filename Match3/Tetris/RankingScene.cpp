@@ -252,7 +252,7 @@ void ranking_inupt_name(void)
 	if (GetButtonDown(XINPUT_BUTTON_DPAD_RIGHT) == TRUE)
 	{
 	
-	if (Cursor.x > 12)
+	if (Cursor.x < 12)
 		{
 			Cursor.x++;
 		}
@@ -278,7 +278,7 @@ void ranking_inupt_name(void)
 		if (Cursor.y < 2)
 		{
 			c = 'a' + Cursor.x + (Cursor.y * 13);
-			New_Score.name[name_num] = c;
+			New_Score.name[name_num++] = c;
 		}
 		else if (Cursor.y < 4)
 		{
@@ -300,7 +300,7 @@ void ranking_inupt_name(void)
 			else
 			{
 				DispMode = RANKING_DISP_MODE;
-				ranking_sort;
+				ranking_sort();
 			}
 		}
 	}
@@ -320,13 +320,13 @@ void ranking_input_name_draw(void)
 	//‘I‘ð—p•¶Žš‚ð•`‰æ
 	for (i = 0; i < 26; i++)
 	{
-		DrawFormatString((i % 13 * 50) + 300, (i / 13 * 50) + 330, GetColor(255, 255, 255), "%-3c", 'a' + 1);
+		DrawFormatString((i % 13 * 50) + 300, (i / 13 * 50) + 330, GetColor(255, 255, 255), "%-3c", 'a' + i);
 
-		DrawFormatString((i % 13 * 50) + 300, (i / 13 * 50) + 430, GetColor(255, 255, 255), "%-3c", 'A' + 1);
+		DrawFormatString((i % 13 * 50) + 300, (i / 13 * 50) + 430, GetColor(255, 255, 255), "%-3c", 'A' + i);
 	}
 	for (i = 0; i < 10; i++)
 	{
-		DrawFormatString((i % 13 * 50) + 300, (i / 13 * 50) + 530, GetColor(255, 255, 255), "%-3c", '0' + 1);
+		DrawFormatString((i % 13 * 50) + 300, (i / 13 * 50) + 530, GetColor(255, 255, 255), "%-3c", '0' + i);
 	}
 
 	DrawFormatString(300, 220, GetColor(255, 255, 255), ">%s", New_Score.name);
