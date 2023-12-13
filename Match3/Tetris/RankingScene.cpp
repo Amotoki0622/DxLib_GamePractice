@@ -261,7 +261,7 @@ void ranking_inupt_name(void)
 	{
 		if (Cursor.y > 0)
 		{
-			Cursor.y++;
+			Cursor.y--;
 		}
 	}
 	if (GetButtonDown(XINPUT_BUTTON_DPAD_DOWN) == TRUE)
@@ -272,7 +272,7 @@ void ranking_inupt_name(void)
 		}
 	}
 
-	//•¶Žš‚ð–|–ó‚·‚é
+	//•¶Žš‚ð‘I‘ð‚·‚é
 	if (GetButtonDown(XINPUT_BUTTON_B) == TRUE)
 	{
 		if (Cursor.y < 2)
