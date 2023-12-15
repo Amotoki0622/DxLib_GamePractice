@@ -210,7 +210,7 @@ void ranking_sort(void)
 	//一番下のスコアを更新する
 	Ranking_Data[RANKING_MAX - 1] = New_Score;
 
-	//データのソートを更新を行う
+	//データのソートを行う
 	for (i = 0; i < RANKING_MAX; i++)
 	{
 		for (j = i + 1; j < RANKING_MAX; j++)
@@ -328,6 +328,10 @@ void ranking_input_name_draw(void)
 	{
 		DrawFormatString((i % 13 * 50) + 300, (i / 13 * 50) + 530, GetColor(255, 255, 255), "%-3c", '0' + i);
 	}
+	DrawFormatString(790, 530, GetColor(0, 0, 255), "削");
+	DrawFormatString(840, 530, GetColor(255, 0, 0), "決");
+	DrawFormatString(890, 530, GetColor(255, 0, 0), "定");
+
 
 	DrawFormatString(300, 220, GetColor(255, 255, 255), ">%s", New_Score.name);
 
