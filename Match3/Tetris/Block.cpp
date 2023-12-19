@@ -118,14 +118,14 @@ int SoundEffect[3];		//SE
 *プロトタイプ宣言
 ***********************************************************/
 
-void create_field(void);
-void create_block(void);
-void move_block(void);
-void change_block(void);
-void turn_block(int clockwise);
-int check_overlap(int x, int y);
-void lock_block(int x, int y);
-void check_line(void);
+void create_field(void);			//フィールドの生成処理
+void create_block(void);			//ブロックの生成処理
+void move_block(void);					//ブロックの移動処理
+void change_block(void);			//ストック交換処理
+void turn_block(int clockwise);		//ブロック回転処理
+int check_overlap(int x, int y);//範囲外チェック処理
+void lock_block(int x, int y);		//着地したブロックを固定済みに変更する処理
+void check_line(void);					//ブロックの横一列確認処理
 
 
 /**********************************************************
